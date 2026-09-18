@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arya Jodh | Software Engineer & CS Student</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-primary: #F2F7F4;
+            --bg-card: #FFFFFF;
+            --accent-sage: #8AAB95;
+            --accent-mint: #D2E4D9;
+            --accent-deep: #2C4A3E;
+            --text-main: #1C2E24;
+            --text-muted: #557062;
+            --border-subtle: #D8E5DD;
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-sage);
+            border-radius: 4px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(242, 247, 244, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--accent-deep);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-deep);
+        }
+
+        .nav-cta {
+            background-color: var(--accent-deep) !important;
+            color: #FFFFFF !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+
+        .nav-cta:hover {
+            background-color: var(--accent-sage) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0 3rem 0;
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 8rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--accent-mint);
+            color: var(--accent-deep);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            color: var(--accent-deep);
+            margin-bottom: 1.2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-deep);
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-sage);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(40, 74, 62, 0.15);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent-deep);
+            border: 2px solid var(--accent-sage);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-mint);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Interactive Canvas Card */
+        .hero-card-visual {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(138, 171, 149, 0.1);
+            position: relative;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .hero-card-visual h3 {
+            font-size: 1.2rem;
+            color: var(--accent-deep);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .code-snippet {
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: var(--bg-primary);
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-sage);
+        }
+
+        /* Infinite Scrolling Tech Stack Marquee */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            background: var(--accent-deep);
+            padding: 1.2rem 0;
+            margin-top: 4rem;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .marquee-track {
+            display: inline-block;
+            animation: scrollMarquee 25s linear infinite;
+        }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-mint);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-right: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .marquee-item i {
+            color: var(--accent-sage);
+        }
+
+        @keyframes scrollMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Section Headers */
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-header span {
+            color: var(--accent-sage);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--accent-deep);
+        }
+
+        /* Bento Grid About Section */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .bento-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(138, 171, 149, 0.12);
+            border-color: var(--accent-sage);
+        }
+
+        .bento-card.span-2 {
+            grid-column: span 2;
+        }
+
+        .bento-card h3 {
+            font-size: 1.3rem;
+            color: var(--accent-deep);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .bento-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--bg-primary);
+            color: var(--accent-deep);
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: var(--accent-mint);
+            border-color: var(--accent-sage);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(138, 171, 149, 0.18);
+            border-color: var(--accent-sage);
+        }
+
+        .project-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-content h3 {
+            font-size: 1.4rem;
+            color: var(--accent-deep);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags span {
+            background: var(--accent-mint);
+            color: var(--accent-deep);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.7rem;
+            border-radius: 4px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1rem;
+        }
+
+        .project-links a {
+            text-decoration: none;
+            color: var(--accent-deep);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: var(--transition);
+        }
+
+        .project-links a:hover {
+            color: var(--accent-sage);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--border-subtle);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 3.5rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 11.5px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 4px solid var(--accent-sage);
+            transition: var(--transition);
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background: var(--accent-deep);
+            border-color: var(--accent-mint);
+            transform: scale(1.3);
+        }
+
+        .timeline-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            border-radius: 16px;
+            transition: var(--transition);
+        }
+
+        .timeline-card:hover {
+            box-shadow: 0 10px 25px rgba(138, 171, 149, 0.12);
+            border-color: var(--accent-sage);
+            transform: translateX(4px);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: var(--accent-mint);
+            color: var(--accent-deep);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-card h3 {
+            font-size: 1.25rem;
+            color: var(--accent-deep);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-card h4 {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-card ul {
+            list-style-type: disc;
+            padding-left: 1.2rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .timeline-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Recruiter Vault / Contact Section */
+        .vault-container {
+            background: var(--accent-deep);
+            color: #FFFFFF;
+            border-radius: 28px;
+            padding: 4rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(44, 74, 62, 0.2);
+        }
+
+        .vault-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #FFFFFF;
+        }
+
+        .vault-container p {
+            color: var(--accent-mint);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.05rem;
+        }
+
+        .vault-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-light {
+            background: #FFFFFF;
+            color: var(--accent-deep);
+        }
+
+        .btn-light:hover {
+            background: var(--accent-mint);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            color: #FFFFFF;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-outline-light:hover {
+            border-color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-subtle);
+            margin-top: 4rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero p {
+                margin: 0 auto 2rem auto;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .bento-card.span-2 {
+                grid-column: span 1;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#hero" class="nav-logo">
+            <i class="fa-solid fa-seedling"></i> Arya Jodh
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#vault" class="nav-cta">Recruiter Vault</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="container">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-graduation-cap"></i> RPI Computer Science & Economics
+                </div>
+                <h1>Building high-impact software, products, & AI workflows.</h1>
+                <p>Hi, I'm <strong>Arya Jodh</strong>. Undergrad at Rensselaer Polytechnic Institute specializing in software engineering, full-stack tools, and automated system efficiency.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fa-solid fa-code"></i> View Projects
+                    </a>
+                    <a href="#vault" class="btn btn-secondary">
+                        <i class="fa-solid fa-file-arrow-down"></i> Get Resume
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card-visual">
+                    <h3><i class="fa-solid fa-terminal" style="color: var(--accent-sage);"></i> Quick Overview</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 1rem;">Current focus areas and active toolsets:</p>
+                    <div class="code-snippet">
+                        &gt; Target: Software Engineering / PM Internships<br>
+                        &gt; Experience: Blue Origin, iD Tech, Code Ninjas<br>
+                        &gt; Focus: Full-Stack Web Dev, Python, C++, Qiskit
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infinite Scrolling Tech Marquee -->
+    <div class="marquee-container">
+        <div class="marquee-track">
+            <div class="marquee-item"><i class="fa-solid fa-code"></i> Python</div>
+            <div class="marquee-item"><i class="fa-solid fa-microchip"></i> C / C++</div>
+            <div class="marquee-item"><i class="fa-brands fa-java"></i> Java</div>
+            <div class="marquee-item"><i class="fa-brands fa-js"></i> JavaScript</div>
+            <div class="marquee-item"><i class="fa-solid fa-atom"></i> Qiskit</div>
+            <div class="marquee-item"><i class="fa-solid fa-database"></i> SQL</div>
+            <div class="marquee-item"><i class="fa-solid fa-terminal"></i> MIPS Assembly</div>
+            <!-- Duplicate set for seamless infinite loop -->
+            <div class="marquee-item"><i class="fa-solid fa-code"></i> Python</div>
+            <div class="marquee-item"><i class="fa-solid fa-microchip"></i> C / C++</div>
+            <div class="marquee-item"><i class="fa-brands fa-java"></i> Java</div>
+            <div class="marquee-item"><i class="fa-brands fa-js"></i> JavaScript</div>
+            <div class="marquee-item"><i class="fa-solid fa-atom"></i> Qiskit</div>
+            <div class="marquee-item"><i class="fa-solid fa-database"></i> SQL</div>
+            <div class="marquee-item"><i class="fa-solid fa-terminal"></i> MIPS Assembly</div>
+        </div>
+    </div>
+
+    <!-- About Section (Bento Grid) -->
+    <section id="about" class="container">
+        <div class="section-header">
+            <span>Background & Expertise</span>
+            <h2>About Me</h2>
+        </div>
+        <div class="bento-grid">
+            <!-- Card 1: Education -->
+            <div class="bento-card span-2">
+                <h3><i class="fa-solid fa-university" style="color: var(--accent-sage);"></i> Education & Academic Focus</h3>
+                <p>Pursuing a Bachelor of Science in Computer Science & Economics with minors in Behavioral Data Science & Quantum Computing at <strong>Rensselaer Polytechnic Institute (RPI)</strong> (Expected May 2028). Coursework spans Data Structures (C++), Computer Architecture (C & MIPS), Principles of Software (Java), and Econometrics.</p>
+                <div class="skills-cloud">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">C & MIPS Assembly</span>
+                    <span class="skill-tag">Qiskit</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Campus Leadership -->
+            <div class="bento-card">
+                <h3><i class="fa-solid fa-users-rectangle" style="color: var(--accent-sage);"></i> Leadership</h3>
+                <p>Active across campus governance and tech mentorship:</p>
+                <ul style="padding-left: 1.2rem; color: var(--text-muted); font-size: 0.9rem;">
+                    <li><strong>Girls Who Code College Loop:</strong> Corporate Relations Lead & Treasurer[cite: 1].</li>
+                    <li><strong>CS1 Undergraduate Mentor:</strong> Guiding cohorts through Python labs[cite: 1].</li>
+                    <li><strong>The Polytechnic:</strong> Associate Business Manager managing finances[cite: 1].</li>
+                </ul>
+            </div>
+
+            <!-- Card 3: Special Certifications -->
+            <div class="bento-card span-2">
+                <h3><i class="fa-solid fa-certificate" style="color: var(--accent-sage);"></i> Certifications & Advanced Training</h3>
+                <p>Committed to expanding technical depth through rigorous industry training programs and product management frameworks.</p>
+                <div class="skills-cloud">
+                    <span class="skill-tag">Product Strategy (GWC x Udacity)</span>
+                    <span class="skill-tag">IBM Road to Quantum Practitioner (Intermediate)</span>
+                    <span class="skill-tag">Qiskit Global Summer School</span>
+                </div>
+            </div>
+
+            <!-- Card 4: Interests -->
+            <div class="bento-card">
+                <h3><i class="fa-solid fa-compass" style="color: var(--accent-sage);"></i> Beyond Code</h3>
+                <p>When not engineering pipelines or web tools, I enjoy bouldering, martial arts instruction, and building physical maker ventures & embedded hardware prototypes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container">
+        <div class="section-header">
+            <span>Portfolio & Creations</span>
+            <h2>Featured Projects</h2>
+        </div>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>TRRAM</h3>
+                    <p style="font-size: 0.85rem; font-weight: 600; color: var(--accent-sage); margin-top: -0.5rem; margin-bottom: 0.75rem;">The Retro Registration Autonomous Manifesto[cite: 1]</p>
+                    <p>Architected and deployed a full-stack, user-tested course registration web application for RPI students using HTML/CSS/JS/SQL and modern web frameworks to optimize campus academic planning[cite: 1].</p>
+                    <div class="project-tags">
+                        <span>HTML/CSS/JS</span>
+                        <span>SQL</span>
+                        <span>Full-Stack</span>
+                        <span>UI/UX</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i> Code Repo</a>
+                        <a href="#" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Rapid Prototyping & Maker Ventures</h3>
+                    <p>Built user-focused physical and software tools, including an Arduino-based environmental eco-monitor and C++ LED Pomodoro productivity indicators, solving localized tracking pain points for peers[cite: 1].</p>
+                    <div class="project-tags">
+                        <span>C++</span>
+                        <span>Arduino</span>
+                        <span>Embedded Hardware</span>
+                        <span>IoT</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i> Code Repo</a>
+                        <a href="#" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline Section -->
+    <section id="experience" class="container">
+        <div class="section-header">
+            <span>Professional Journey</span>
+            <h2>Experience & Leadership</h2>
+        </div>
+        <div class="timeline">
+            <!-- Blue Origin -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">January 2026 - April 2026</span>
+                    <h3>Undergraduate Intern</h3>
+                    <h4>Blue Origin (Kent, WA)[cite: 1]</h4>
+                    <ul>
+                        <li><strong>Club for the Future:</strong> Led end-to-end execution of automated data workflows and a custom AI agent within a 4-person team, saving 15+ hours each week in manual tracking[cite: 1].</li>
+                        <li>Created strategic distribution channels reaching 3,500 employees, managing event logistics and educational resources for 75+ educators impacting 2,000+ students[cite: 1].</li>
+                        <li><strong>Cybersecurity - GRC:</strong> Owned product lifecycle for internal secure GRC web tools serving 12,000+ employees; translated compliance workflows into modular web apps using HTML/CSS/JS and Python[cite: 1].</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- iD Tech -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">May 2026 - August 2026</span>
+                    <h3>Undergraduate Intern</h3>
+                    <h4>iD Tech (Seattle, WA)[cite: 1]</h4>
+                    <ul>
+                        <li>Managed multi-disciplinary STEM curriculum delivery (Roblox/Lua, Mobile App Dev, Battlebots) and daily campus operations for 100+ students weekly across high-visibility locations (Bellevue College, UW, Amazon HQ)[cite: 1].</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Code Ninjas Sammamish -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">March 2025 - January 2026 (Social Media) / May - Aug 2025 (Sensei)</span>
+                    <h3>Sensei (Lead Instructor) & Social Media Manager</h3>
+                    <h4>Code Ninjas Sammamish[cite: 1]</h4>
+                    <ul>
+                        <li>Mentored 400+ students through core Python, Lua, and Java fundamentals; partnered with management to design real-world application projects that improved retention[cite: 1].</li>
+                        <li>Drove digital acquisition across Mailchimp, Instagram, and Facebook, scaling K-12 program visibility by 150%[cite: 1].</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- True Martial Arts -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">2019 - 2025</span>
+                    <h3>Senior Instructor</h3>
+                    <h4>True Martial Arts Sammamish[cite: 1]</h4>
+                    <ul>
+                        <li>Directed administrative operations, quality control, and student progression frameworks for 750+ members of all ages; managed weekly data entry and mentorship programs[cite: 1].</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recruiter Vault / Contact Section -->
+    <section id="vault" class="container" style="padding-bottom: 2rem;">
+        <div class="vault-container">
+            <h2>Recruiter Vault</h2>
+            <p>Access my credentials, direct contact info, and resume instantly. Open for software engineering and product internship opportunities.</p>
+            <div class="vault-actions">
+                <a href="resume.pdf" target="_blank" class="btn btn-light">
+                    <i class="fa-solid fa-file-arrow-down"></i> Download Resume (PDF)
+                </a>
+                <a href="mailto:arya.jodh@gmail.com" class="btn btn-outline-light">
+                    <i class="fa-solid fa-envelope"></i> arya.jodh@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/arya-jodh" target="_blank" class="btn btn-outline-light">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Arya Jodh.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
